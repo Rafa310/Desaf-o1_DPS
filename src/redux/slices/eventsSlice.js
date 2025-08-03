@@ -1,19 +1,18 @@
-// src/redux/slices/eventsSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = [
-  { id: 1, title: "Concierto de Rock", price: 50 },
-  { id: 2, title: "Teatro Clásico", price: 25 },
-  { id: 3, title: "Concierto de POP", price: 50},
-  { id: 4, title: "Danza contemporanea", price: 15},
-  { id: 5, title: "Artista nacional", price: 15},
-  { id: 6, title: "Danza clasica", price: 30},
-  { id: 7, title: "Concierto clasico", price: 30},
-  { id: 8, title: "Musico Internacional", price: 100},
+  { id: 1, title: "Concierto de Rock", price: 50, description: "Colección de canciones locales de genero rock." },
+  { id: 2, title: "Teatro Clásico", price: 25, description: "Conjunto de musica clasica en vivo, con piezas de Tchaikovsky, Mozart, Beethoven y " },
+  { id: 3, title: "Concierto de POP", price: 50, description: "Colección de canciones locales del genero POP" },
+  { id: 4, title: "Danza contemporanea", price: 15, description: "Demostración actistica nacional de danza." },
+  { id: 5, title: "Artista nacional", price: 15, description: "Aqui es un espacio para que los solistas nacionales puedan lucirse." },
+  { id: 6, title: "Danza clasica", price: 30, description: "Aquí tenemos danza pero de la epoca clásica como la danza de los cisnes, etc." },
+  { id: 7, title: "Musico Internacional", price: 100, description: "Invitado internacional traído al país para el disfrute de nuestra gente." },
 ];
 
 export const eventsSlice = createSlice({
-  name: 'events',
+  name: 'Eventos',
   initialState,
   reducers: {
     addEvent: (state, action) => {
