@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { addToCart } from '../../redux/slices/cartSlice';
 
 export default function EventDetail() {
   const router = useRouter();
