@@ -5,7 +5,7 @@ import { addEvent, deleteEvent, updateEvent } from '../redux/slices/eventsSlice'
 export default function AdminPanel() {
   const events = useSelector((state) => state.events);
   const dispatch = useDispatch();
-  const [newEvent, setNewEvent] = useState({ title: '', price: 0 });
+  const [newEvent, setNewEvent] = useState({ title: '', price: 0, description: '' });
   const [editingEvent, setEditingEvent] = useState(null);
 
   const handleAddEvent = () => {
@@ -13,6 +13,8 @@ export default function AdminPanel() {
     dispatch(addEvent(newEvent));
     setNewEvent({ title: '', price: 0 });
   };
+
+
 
   const handleUpdateEvent = () => {
     dispatch(updateEvent(editingEvent));
@@ -47,6 +49,16 @@ export default function AdminPanel() {
               : setNewEvent({ ...newEvent, price: Number(e.target.value) })
           }
           style={{ marginRight: '10px' }}
+        />
+        <input
+        type="text"
+        placeholder="Descripción"
+        value={editingEvent ? editingEvent.description : newEvent.description}
+        onChange={(e) => 
+        editingEvent
+        ? setEditingEvent({ ...editingEvent, description: e.target.value })
+        : setNewEvent({ ...newEvent, description: e.target.value })
+        }
         />
         {editingEvent ? (
           <button onClick={handleUpdateEvent}>Guardar Cambios</button>
