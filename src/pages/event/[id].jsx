@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { addToCart } from '../../redux/slices/cartSlice';
 
+{/**Se agregaron clases de CSS*/}
 export default function EventDetail() {
   const router = useRouter();
   const { id } = router.query;

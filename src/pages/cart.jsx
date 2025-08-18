@@ -35,6 +35,7 @@ export default function Cart() {
     }
   };
 
+  {/**Se agregaron clases de CSS*/}
   return (
     <div className="cart-container">
     <h2>Carrito</h2>

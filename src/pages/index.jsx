@@ -13,6 +13,7 @@ export default function Home() {
       event.description?.toLowerCase().includes(searchTerm.toLowerCase())
     ));
 
+    {/**Se agregaron clases de CSS*/}
   return (
     <div className="home-page">
       <h1>Eventos Disponibles</h1>

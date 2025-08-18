@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function EventCard({ event }) {
   const dispatch = useDispatch(); 
   
-
+{/**Se agregaron clases de CSS*/}
   return (
     <div className="event-card">
       <Link href={`/event/${event.id}`} className="event-link">

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+{/**Se agregaron clases de CSS*/}
 export default function Navbar() {
   return (
     <nav className="navbar">

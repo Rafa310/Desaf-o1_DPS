@@ -49,6 +49,7 @@ export default function AdminPanel() {
     }
   };
 
+  {/**Se agregaron clases de CSS*/}
   return (
     <div className="admin-container">
       <h1>Panel de Administración</h1>
