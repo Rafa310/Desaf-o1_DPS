@@ -50,18 +50,13 @@ export default function AdminPanel() {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="admin-container">
       <h1>Panel de Administración</h1>
       
       {/* Sección de Eventos */}
-      <div style={{ 
-        marginBottom: '40px',
-        padding: '20px',
-        border: '1px solid #eee',
-        borderRadius: '8px'
-      }}>
+      <div className="admin-section">
         <h2>{editingEvent ? 'Editar Evento' : 'Añadir Evento'}</h2>
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+        <div className="form-row">
           <input
             type="text"
             placeholder="Título"
@@ -71,7 +66,6 @@ export default function AdminPanel() {
                 ? setEditingEvent({ ...editingEvent, title: e.target.value })
                 : setNewEvent({ ...newEvent, title: e.target.value })
             }
-            style={{ flex: 2, padding: '8px' }}
           />
           <input
             type="number"
@@ -82,7 +76,6 @@ export default function AdminPanel() {
                 ? setEditingEvent({ ...editingEvent, price: Number(e.target.value) })
                 : setNewEvent({ ...newEvent, price: Number(e.target.value) })
             }
-            style={{ flex: 1, padding: '8px' }}
           />
         </div>
         <textarea
@@ -93,102 +86,40 @@ export default function AdminPanel() {
               ? setEditingEvent({ ...editingEvent, description: e.target.value })
               : setNewEvent({ ...newEvent, description: e.target.value })
           }
-          style={{ 
-            width: '100%',
-            padding: '8px',
-            marginBottom: '10px',
-            minHeight: '80px'
-          }}
         />
         <div>
           {editingEvent ? (
             <>
-              <button 
-                onClick={handleUpdateEvent}
-                style={{ 
-                  padding: '8px 16px',
-                  background: '#4CAF50',
-                  color: 'white',
-                  border: 'none',
-                  marginRight: '10px'
-                }}
-              >
-                Guardar
-              </button>
-              <button 
-                onClick={() => setEditingEvent(null)}
-                style={{ 
-                  padding: '8px 16px',
-                  background: '#f44336',
-                  color: 'white',
-                  border: 'none'
-                }}
-              >
-                Cancelar
-              </button>
+              <button className="btn btn-success" onClick={handleUpdateEvent}>Guardar</button>
+              <button className="btn btn-danger" onClick={() => setEditingEvent(null)}>Cancelar</button>
             </>
           ) : (
-            <button 
-              onClick={handleAddEvent}
-              style={{ 
-                padding: '8px 16px',
-                background: '#2196F3',
-                color: 'white',
-                border: 'none'
-              }}
-            >
-              Añadir Evento
-            </button>
+            <button className="btn btn-primary" onClick={handleAddEvent}>Añadir Evento</button>
           )}
         </div>
       </div>
 
       {/* Lista de Eventos */}
-      <div style={{ marginBottom: '40px' }}>
+      <div className="admin-section">
         <h2>Eventos Existentes</h2>
-        <table style={{ 
-          width: '100%', 
-          borderCollapse: 'collapse',
-          marginTop: '10px'
-        }}>
+        <table className="admin-table">
           <thead>
-            <tr style={{ backgroundColor: '#f5f5f5' }}>
-              <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Título</th>
-              <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Precio</th>
-              <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Descripción</th>
-              <th style={{ border: '1px solid #ddd', padding: '12px', textAlign: 'left' }}>Acciones</th>
+            <tr>
+              <th>Título</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {events.map((event) => (
               <tr key={event.id}>
-                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{event.title}</td>
-                <td style={{ border: '1px solid #ddd', padding: '8px' }}>${event.price.toFixed(2)}</td>
-                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{event.description}</td>
-                <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-                  <button 
-                    onClick={() => setEditingEvent(event)}
-                    style={{ 
-                      marginRight: '5px',
-                      padding: '5px 10px',
-                      background: '#FFC107',
-                      color: 'black',
-                      border: 'none'
-                    }}
-                  >
-                    Editar
-                  </button>
-                  <button 
-                    onClick={() => dispatch(deleteEvent(event.id))}
-                    style={{ 
-                      padding: '5px 10px',
-                      background: '#f44336',
-                      color: 'white',
-                      border: 'none'
-                    }}
-                  >
-                    Eliminar
-                  </button>
+                <td>{event.title}</td>
+                <td>${event.price.toFixed(2)}</td>
+                <td>{event.description}</td>
+                <td>
+                  <button className="btn btn-warning" onClick={() => setEditingEvent(event)}>Editar</button>
+                  <button className="btn btn-danger" onClick={() => dispatch(deleteEvent(event.id))}>Eliminar</button>
                 </td>
               </tr>
             ))}
@@ -197,21 +128,16 @@ export default function AdminPanel() {
       </div>
 
       {/* Sección de Cupones */}
-      <div style={{ 
-        padding: '20px',
-        border: '1px solid #eee',
-        borderRadius: '8px'
-      }}>
+      <div className="admin-section">
         <h2>Gestión de Cupones</h2>
-        <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+        <div className="form-row">
           <input
             type="text"
             placeholder="Código (ej: VERANO15)"
             value={newCoupon}
             onChange={(e) => setNewCoupon(e.target.value.toUpperCase())}
-            style={{ flex: 1, padding: '8px' }}
           />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+          <div className="coupon-discount">
             <span>Descuento:</span>
             <input
               type="number"
@@ -219,21 +145,13 @@ export default function AdminPanel() {
               max="100"
               value={discountPercentage}
               onChange={(e) => setDiscountPercentage(Math.min(100, Math.max(1, e.target.value)))}
-              style={{ width: '60px', padding: '8px' }}
             />
             <span>%</span>
           </div>
           <button
+            className="btn btn-success"
             onClick={handleAddCoupon}
             disabled={!newCoupon.trim()}
-            style={{ 
-              padding: '8px 16px',
-              background: '#4CAF50',
-              color: 'white',
-              border: 'none',
-              opacity: !newCoupon.trim() ? 0.6 : 1,
-              cursor: !newCoupon.trim() ? 'not-allowed' : 'pointer'
-            }}
           >
             Añadir Cupón
           </button>
@@ -243,31 +161,13 @@ export default function AdminPanel() {
         {coupons.length === 0 ? (
           <p>No hay cupones registrados</p>
         ) : (
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+          <ul className="coupon-list">
             {coupons.map((coupon) => (
-              <li 
-                key={coupon.code}
-                style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: '10px',
-                  borderBottom: '1px solid #eee'
-                }}
-              >
+              <li key={coupon.code}>
                 <div>
                   <strong>{coupon.code}</strong> - {coupon.discount * 100}% de descuento
                 </div>
-                <button
-                  onClick={() => dispatch(removeCoupon(coupon.code))}
-                  style={{ 
-                    padding: '5px 10px',
-                    background: '#f44336',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px'
-                  }}
-                >
+                <button className="btn btn-danger" onClick={() => dispatch(removeCoupon(coupon.code))}>
                   Eliminar
                 </button>
               </li>

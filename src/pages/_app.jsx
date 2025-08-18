@@ -5,7 +5,9 @@ import '../styles/globals.css';
 import Navbar from '../componentes/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import '../styles/EventDetail.css';
+import '../styles/EventCard.css';
+import '../styles/AdminPanel.css';
 
 
 export default function MyApp({ Component, pageProps }) {
